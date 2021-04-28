@@ -2,29 +2,30 @@
   mat-button
   mat-raised-button
   [matMenuTriggerFor]="animals"
-  (menuClosed)="menuClosed($event)"
+  (menuClosed)="hideFloatingElem($event)"
 >
   Open Menu
 </button>
 
-<mat-menu #animals="matMenu">
-  <button
-    mat-menu-item
-    [matMenuTriggerFor]="movingItems"
-    (menuClosed)="menuClosed($event)"
-  >
+<mat-menu class="icon-menu" #animals="matMenu">
+  <button mat-menu-item (menuClosed)="hideFloatingElem($event)">
     Move to Area
   </button>
   <button
     mat-menu-item
     [matMenuTriggerFor]="copyingItems"
-    (menuClosed)="menuClosed($event)"
+    (menuClosed)="hideFloatingElem($event)"
   >
     Copy to Area
   </button>
-  <button mat-menu-item (click)="handleClick($event)">Duplicate</button>
+  <button mat-menu-item (click)="openFloatElem($event)">
+    <mat-icon>filter_none</mat-icon>
+    Duplicate
+  </button>
   <mat-divider></mat-divider>
-  <button mat-menu-item (click)="handleClick($event)">Copy to Proposal</button>
+  <button mat-menu-item (click)="openFloatElem($event)">
+    Copy to Proposal
+  </button>
   <ng-container *ngTemplateOutlet="floatingElement"></ng-container>
 </mat-menu>
 
@@ -32,30 +33,28 @@
   <button mat-menu-item>Barn</button>
   <button mat-menu-item>Irrigation Room</button>
   <button mat-menu-item>Nighttime Room</button>
-  <button mat-menu-item>America Room</button>
-  <button mat-menu-item>Front Porch</button>
+  <button mat-menu-item class="dropdown">
+    America Room <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <button mat-menu-item class="dropdown">
+    Front Porch <mat-icon>arrow_drop_down</mat-icon>
+  </button>
   <button mat-menu-item>Garden</button>
   <button mat-menu-item>Goat Pen</button>
   <button
     mat-menu-item
-    [matMenuTriggerFor]="guesthouse"
-    (menuClosed)="menuClosed($event)"
+    class="dropdown"
+    (menuClosed)="hideFloatingElem($event)"
+    (click)="openDropdown($event)"
   >
     Michael's Guesthouse
+    <mat-icon>arrow_drop_down</mat-icon>
   </button>
-</mat-menu>
-
-<mat-menu #guesthouse="matMenu">
-  <button mat-menu-item (click)="handleClick($event)">Option 1</button>
-  <button mat-menu-item (click)="handleClick($event)">Option 2</button>
-  <button mat-menu-item (click)="handleClick($event)">Option 3</button>
-  <ng-container *ngTemplateOutlet="floatingElement"></ng-container>
-</mat-menu>
-
-<mat-menu #movingItems="matMenu">
-  <button mat-menu-item (click)="handleClick($event)">Option 1</button>
-  <button mat-menu-item (click)="handleClick($event)">Option 2</button>
-  <button mat-menu-item (click)="handleClick($event)">Option 3</button>
+  <div class="dropdown-menu">
+    <button mat-menu-item (click)="openFloatElem($event)">Option 1</button>
+    <button mat-menu-item (click)="openFloatElem($event)">Option 2</button>
+    <button mat-menu-item (click)="openFloatElem($event)">Option 3</button>
+  </div>
   <ng-container *ngTemplateOutlet="floatingElement"></ng-container>
 </mat-menu>
 
@@ -66,6 +65,6 @@
       <button>Include Related Items</button>
       <button>This Item Only</button>
     </div>
-    <p class="cancel" (click)="menuClosed($event)">Cancel</p>
+    <p class="cancel" (click)="hideFloatingElem($event)">Cancel</p>
   </div>
 </ng-template>

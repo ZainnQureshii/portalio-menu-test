@@ -2,14 +2,58 @@
   .mat-menu-panel {
     overflow: hidden;
     .mat-menu-item {
-      min-width: 165px;
+      min-width: 190px;
+      font-size: 13px;
+      color: #27272a;
+      line-height: 36px;
+      height: 36px;
+      .material-icons {
+        font-size: 17px;
+        margin-left: -27px;
+        margin-right: 0px;
+      }
+
+      &.dropdown {
+        .material-icons {
+          position: absolute;
+          right: 8px;
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+          font-size: 23px;
+        }
+        + .dropdown-menu {
+          display: none;
+          .mat-menu-item {
+            padding-left: 26px;
+            color: #595a5e;
+          }
+        }
+
+        &.open {
+          .material-icons {
+            transform: translateY(-50%) rotateX(180deg);
+          }
+          + .dropdown-menu {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &.icon-menu {
+      .mat-menu-item {
+        padding-left: 37px;
+      }
     }
   }
+
   .menu-hide-panel {
     position: relative;
     pointer-events: none;
-    button {
-      opacity: 0.2;
+    .mat-menu-item {
+      opacity: 0.1;
     }
   }
 

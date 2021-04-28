@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MenuWrapperComponent } from './components/menu-wrapper/menu-wrapper.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -20,6 +21,7 @@ import { MenuComponent } from './components/menu/menu.component';
     MatMenuModule,
     MatButtonModule,
     MatDividerModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
